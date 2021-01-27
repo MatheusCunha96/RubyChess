@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-class King
+require_relative 'piece'
+
+class King < Piece
   attr_accessor :image
 
-  def initialize
+  def initialize(initial_position, color)
     @image = 'k'
+    super(initial_position, color, @image)
   end
 end

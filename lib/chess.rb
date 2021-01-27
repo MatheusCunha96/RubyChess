@@ -13,3 +13,5 @@ class Chess
 end
 
 chess = Chess.new
+debugger
+p 'n'

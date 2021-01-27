@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-class Pawn
+require_relative 'piece'
+
+class Pawn < Piece
   attr_accessor :image
 
-  def initialize
+  def initialize(initial_position, color)
     @image = 'p'
+    super(initial_position, color, @image)
   end
 end
