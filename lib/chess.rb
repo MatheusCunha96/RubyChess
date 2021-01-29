@@ -8,10 +8,8 @@ class Chess
 
   def initialize
     @board = Board.new
-    @turn = 'a'
   end
 end
 
 chess = Chess.new
-debugger
-p 'n'
+chess.board.display

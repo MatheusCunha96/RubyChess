@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'byebug'
 require_relative 'position'
 require_relative 'pawn'
 require_relative 'rook'
@@ -8,23 +7,19 @@ require_relative 'knight'
 require_relative 'bishop'
 require_relative 'queen'
 require_relative 'king'
+require_relative 'drawer'
 
 class Board
   attr_accessor :positions
 
-  def initialize
+  def initialize(drawer = Drawer.new)
     @positions = Array.new(8) { Array.new(8, nil) }
+    @drawer = drawer
     set_initial_state
   end
 
   def display
-    @positions.each do |rows|
-      rows.each do |piece|
-        print piece.nil? ? '.' : piece.image
-        print "\t"
-      end
-      print "\n"
-    end
+    @drawer.display(@positions)
   end
 
   private

@@ -6,7 +6,6 @@ class King < Piece
   attr_accessor :image
 
   def initialize(initial_position, color)
-    @image = 'k'
-    super(initial_position, color, @image)
+    super(initial_position, color, color == 'white' ? '♚' : '♔')
   end
 end
