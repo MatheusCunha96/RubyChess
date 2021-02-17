@@ -26,12 +26,12 @@ describe Pawn do
     end
 
     describe 'image' do
-      it 'should be B if white pawn' do
+      it 'should be white if white pawn' do
         pawn = Pawn.new(initial_position, 'white')
         expect(pawn.image).to eql('♟')
       end
 
-      it 'should be P if white pawn' do
+      it 'should be black if black pawn' do
         pawn = Pawn.new(initial_position, 'black')
         expect(pawn.image).to eql('♙')
       end
