@@ -19,12 +19,27 @@ describe Chess do
     expect(subject.player_black).to eql(nil)
   end
 
+  it 'players initialization' do
+    mock_input
+    subject.send(:create_players)
+
+    expect(subject.player_white).to be_instance_of(Player)
+    expect(subject.player_black).to be_instance_of(Player)
+  end
+
   describe '.play' do
-    it 'start players' do
+    it 'simple move' do
+      white_player_double = instance_double(Player)
+      black_player_double = instance_double(Player)
+
       mock_input
+
+      expect(Player).to receive(:new).and_return(white_player_double)
+      expect(Player).to receive(:new).and_return(black_player_double)
+      expect(white_player_double).to receive(:move).and_return([Position.new(2, 5), Position.new(3, 5)])
+      expect(Chess).to receive(:finish_condition?).and_return(true)
+
       subject.play
-      expect(subject.player_white).to be_instance_of(Player)
-      expect(subject.player_black).to be_instance_of(Player)
     end
 
     describe 'finish condition'
@@ -33,6 +48,8 @@ end
 
 def mock_input
   gets = double
+  chomp = double
   allow(STDIN).to receive(:gets).and_return(gets)
-  allow(gets).to receive(:chomp).and_return(anything)
+  allow(gets).to receive(:chomp).and_return(chomp)
+  allow(chomp).to receive(:downcase).and_return(anything)
 end

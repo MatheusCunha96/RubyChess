@@ -21,7 +21,8 @@ class Chess
       current_player = (@turn % 2).zero? ? @player_white : @player_black
 
       # validate move
-      current_player.move
+      move = current_player.move
+      debugger
 
       @turn += 1
     end
@@ -44,6 +45,10 @@ class Chess
     # checkmate
     # dead position ( king vs king; king vs king and bishop; king vs king and knight; king and bishop vs king and bishop if bishop from squares of same color)
     # stalemate
-    true
+    checkmate?
+  end
+
+  def checkmate?
+    false
   end
 end
