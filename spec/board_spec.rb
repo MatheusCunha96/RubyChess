@@ -115,4 +115,16 @@ describe Board do
       end
     end
   end
+
+  describe '.update_positions' do
+    it 'move piece from orig to dest' do
+      orig = Position.new(1, 5)
+      dest = Position.new(2, 5)
+      board.update_positions(orig, dest)
+
+      expect(board.positions[1][5]).to be_nil
+      expect(board.positions[2][5]).to be_instance_of(Pawn)
+    end
+  end
+
 end

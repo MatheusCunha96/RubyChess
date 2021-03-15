@@ -20,15 +20,23 @@ class Chess
     until finish_condition?
       current_player = (@turn % 2).zero? ? @player_white : @player_black
 
-      # validate move
+      # TODO: validate move
       move = current_player.move
-      debugger
+      execute_move(move)
 
       @turn += 1
+      @board.display
     end
   end
 
   private
+
+  def execute_move(move)
+    orig = move[0]
+    dest = move[1]
+
+    @board.update_positions(orig, dest)
+  end
 
   def create_players
     puts 'Enter player white name: '

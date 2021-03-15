@@ -22,6 +22,12 @@ class Board
     @drawer.display(@positions)
   end
 
+  def update_positions(orig, dest)
+    moved_piece = @positions[orig.row][orig.col]
+    @positions[dest.row][dest.col] = moved_piece
+    @positions[orig.row][orig.col] = nil
+  end
+
   private
 
   def set_initial_state

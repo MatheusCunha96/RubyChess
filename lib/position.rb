@@ -3,7 +3,7 @@
 class Position
   attr_accessor :row, :col
 
-  def initialize(row, col, piece = nil)
+  def initialize(row, col)
     @row = row
     @col = col
   end

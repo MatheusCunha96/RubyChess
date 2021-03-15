@@ -33,17 +33,28 @@ describe Chess do
       black_player_double = instance_double(Player)
 
       mock_input
+      finish_game_after_move(2)
 
       expect(Player).to receive(:new).and_return(white_player_double)
       expect(Player).to receive(:new).and_return(black_player_double)
-      expect(white_player_double).to receive(:move).and_return([Position.new(2, 5), Position.new(3, 5)])
-      expect(Chess).to receive(:finish_condition?).and_return(true)
+      expect(white_player_double).to receive(:move).and_return([Position.new(1, 4), Position.new(2, 4)])
+      expect(black_player_double).to receive(:move).and_return([Position.new(6, 4), Position.new(5, 4)])
 
       subject.play
+
+      expect(subject.board.positions[1][4]).to eql(nil)
+      expect(subject.board.positions[2][4]).to be_instance_of(Pawn)
+      expect(subject.board.positions[6][4]).to eql(nil)
+      expect(subject.board.positions[5][4]).to be_instance_of(Pawn)
     end
 
     describe 'finish condition'
   end
+end
+
+def finish_game_after_move(move)
+  expect_any_instance_of(Chess).to receive(:finish_condition?).exactly(move).and_return(false)
+  expect_any_instance_of(Chess).to receive(:finish_condition?).and_return(true)
 end
 
 def mock_input
