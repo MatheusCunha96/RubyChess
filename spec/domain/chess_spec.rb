@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'chess'
+require 'domain/chess'
 
 describe Chess do
   let(:subject) { Chess.new }

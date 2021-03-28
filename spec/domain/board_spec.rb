@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'board'
+require 'domain/board'
 
 describe Board do
   let(:board) { Board.new }

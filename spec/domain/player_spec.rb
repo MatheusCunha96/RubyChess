@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'player'
+require 'domain/player'
 
 describe Player do
   let(:subject) { Player.new('John') }

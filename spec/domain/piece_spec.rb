@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'piece'
-require 'position'
+require 'domain/pieces/piece'
+require 'domain/position'
 
 describe Piece do
   let(:initial_position) { Position.new(1, 0) }
