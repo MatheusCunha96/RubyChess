@@ -30,8 +30,8 @@ class Player
   def move_to_position(move)
     move.map do |position|
       position_splitted = position.split('')
-      col = position_splitted[0].bytes.first - 96
-      row = position_splitted[1].to_i
+      col = position_splitted[0].bytes.first - 97
+      row = position_splitted[1].to_i - 1
 
       Position.new(row, col)
     end

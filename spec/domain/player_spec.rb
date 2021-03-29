@@ -11,14 +11,14 @@ describe Player do
   end
 
   describe '.move' do
-    it '' do
+    it 'transform move from human form to position' do
       move_input_mock('e2 to e3')
       move = subject.move
 
-      expect(move[0].row).to eql(2)
-      expect(move[0].col).to eql(5)
-      expect(move[1].row).to eql(3)
-      expect(move[1].col).to eql(5)
+      expect(move[0].row).to eql(1)
+      expect(move[0].col).to eql(4)
+      expect(move[1].row).to eql(2)
+      expect(move[1].col).to eql(4)
     end
   end
 end
