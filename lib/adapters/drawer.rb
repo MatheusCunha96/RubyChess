@@ -14,14 +14,15 @@ class Drawer
 
   def display_board_rows(board)
     board.reverse.each_with_index do |row, row_number|
-      display_row(row, row_number)
+      display_number = 1 + (row_number - 7) *  -1
+      display_row(row, display_number)
       display_middle_board unless row_number == 7
     end
   end
 
-  def display_row(row, row_number)
+  def display_row(row, display_number)
     row.each_with_index do |piece, position|
-      print position.zero? ? "  #{row_number} " : ' '
+      print position.zero? ? "  #{display_number} " : ' '
       print '│  '
       print piece.nil? ? '.' : piece.image
       print ' │' if position == 7
