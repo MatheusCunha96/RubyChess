@@ -15,4 +15,8 @@ class Piece
   def white?
     @color == 'white'
   end
+
+  def find_moves(board)
+    []
+  end
 end

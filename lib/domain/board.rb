@@ -8,6 +8,7 @@ require_relative 'pieces/bishop'
 require_relative 'pieces/queen'
 require_relative 'pieces/king'
 require_relative '../adapters/drawer'
+require_relative '../adapters/messager'
 
 class Board
   attr_accessor :positions
@@ -24,11 +25,35 @@ class Board
 
   def update_positions(orig, dest)
     moved_piece = @positions[orig.row][orig.col]
-    @positions[dest.row][dest.col] = moved_piece
-    @positions[orig.row][orig.col] = nil
+
+    possible_moves = moved_piece.find_moves(self)
+
+    if possible_moves.include?(dest.to_a)
+      move_piece(orig, dest)
+    else
+      Messager.not_possible_move(possible_moves)
+      return false
+    end
+
+    true
+  end
+
+  def position_state(x,y)
+    return nil if @positions[x][y].nil?
+
+    @positions[x][y].color
   end
 
   private
+
+  def move_piece(orig, dest)
+    piece = @positions[orig.row][orig.col]
+
+    @positions[dest.row][dest.col] = piece
+    @positions[orig.row][orig.col] = nil
+
+    piece.current_position = dest
+  end
 
   def set_initial_state
     set_initial_pawns

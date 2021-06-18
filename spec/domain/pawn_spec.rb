@@ -3,6 +3,7 @@
 require 'spec_helper'
 require 'domain/pieces/pawn'
 require 'domain/position'
+require 'domain/board'
 
 describe Pawn do
   let(:initial_position) { Position.new(1, 0) }
@@ -34,6 +35,69 @@ describe Pawn do
       it 'should be black if black pawn' do
         pawn = Pawn.new(initial_position, 'black')
         expect(pawn.image).to eql('♙')
+      end
+    end
+  end
+
+  describe '.find_moves' do
+    let(:board) { Board.new }
+
+    before do
+      black_orig = Position.new(6,4)
+      black_dest = Position.new(2,4)
+
+      white_orig = Position.new(1,7)
+      white_dest = Position.new(2,0)
+
+      board.send(:move_piece, black_orig, black_dest)
+      board.send(:move_piece, white_orig, white_dest)
+    end
+
+    context 'when one step' do
+      it 'success if next position empty' do
+        pawn = board.positions[1][1]
+        moves = pawn.find_moves(board)
+
+        expect(moves).to include([2,1])
+      end
+
+      it 'fail if next position no empty' do
+        pawn = board.positions[1][4]
+        moves = pawn.find_moves(board)
+
+        expect(moves).to be_empty
+      end
+    end
+
+    context 'when capture left' do
+      it 'success if contains piece from different color' do
+        expected_moves = [[2,4], [2,5]]
+        pawn = board.positions[1][5]
+        moves = pawn.find_moves(board)
+
+        moves.each do |move|
+          expect(expected_moves).to include(move)
+        end
+      end
+
+      it 'fail if empty' do
+        expected_moves = [[2,4], [2,3]]
+        pawn = board.positions[1][3]
+        moves = pawn.find_moves(board)
+
+        moves.each do |move|
+          expect(expected_moves).to include(move)
+        end
+      end
+
+      it 'fail if contains piece from same color' do
+        expected_moves = [[2,1]]
+        pawn = board.positions[1][1]
+        moves = pawn.find_moves(board)
+
+        moves.each do |move|
+          expect(expected_moves).to include(move)
+        end
       end
     end
   end

@@ -10,7 +10,7 @@ class Player
   end
 
   def move
-    puts 'Write your move in format: [Letter][Number] to [Letter][Number] (ex. e2 to e3).'
+    puts "Player #{name} turn. Write your move in format: [Letter][Number] to [Letter][Number] (ex. e2 to e3)."
     move = STDIN.gets.chomp.downcase
 
     until move =~ move_format

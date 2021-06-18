@@ -127,4 +127,17 @@ describe Board do
     end
   end
 
+  describe '.position_state' do
+    it 'returns nil if empty space' do
+      expect(board.position_state(4,4)).to be(nil)
+    end
+
+    it 'returns black if contains black piece' do
+      expect(board.position_state(7,0)).to be('black')
+    end
+
+    it 'returns white if contains white piece' do
+      expect(board.position_state(0,0)).to be('white')
+    end
+  end
 end
