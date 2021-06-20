@@ -4,15 +4,11 @@ require_relative 'piece'
 
 class Pawn < Piece
   attr_accessor :image
+  attr_reader :possible_moves
 
   def initialize(initial_position, color)
     # TODO: en passant
-    @possible_moves = {
-      one_step:      [0,1],
-      double_step:   [0,2],
-      capture_left:  [-1,1],
-      capture_right: [1,1]
-    }
+    @possible_moves = set_possible_moves(color)
 
     super(initial_position, color, color == 'white' ? '♟' : '♙')
   end
@@ -35,5 +31,25 @@ class Pawn < Piece
     end
 
     moves
+  end
+
+  private
+
+  def set_possible_moves(color)
+    if color == 'white'
+      {
+        one_step:      [0,1],
+        double_step:   [0,2],
+        capture_left:  [-1,1],
+        capture_right: [1,1]
+      }
+    else
+      {
+        one_step:      [0,-1],
+        double_step:   [0,-2],
+        capture_left:  [1,-1],
+        capture_right: [-1,-1]
+      }
+    end
   end
 end

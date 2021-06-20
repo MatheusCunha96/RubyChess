@@ -37,6 +37,34 @@ describe Pawn do
         expect(pawn.image).to eql('♙')
       end
     end
+
+    describe 'possible moves' do
+      context 'when white' do
+        it 'must have correct possibles move' do
+          pawn = Pawn.new(initial_position, 'white')
+          expect(pawn.possible_moves).to eql({
+            one_step:      [0,1],
+            double_step:   [0,2],
+            capture_left:  [-1,1],
+            capture_right: [1,1]
+          }
+          )
+        end
+      end
+
+      context 'when black' do
+        it 'must have correct possibles move' do
+          pawn = Pawn.new(initial_position, 'black')
+          expect(pawn.possible_moves).to eql({
+            one_step:      [0,-1],
+            double_step:   [0,-2],
+            capture_left:  [1,-1],
+            capture_right: [-1,-1]
+          }
+          )
+        end
+      end
+    end
   end
 
   describe '.find_moves' do
