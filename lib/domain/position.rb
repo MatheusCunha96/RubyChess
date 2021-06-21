@@ -9,7 +9,18 @@ class Position
     @piece = nil
   end
 
-  def to_a
-    [row, col]
+  def piece=(piece)
+    @piece = piece
+    piece.current_position = as_array
+  end
+
+  def remove_piece
+    @piece = nil
+  end
+
+  private
+
+  def as_array
+    [@row, @col]
   end
 end

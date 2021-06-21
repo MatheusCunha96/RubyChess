@@ -5,7 +5,7 @@ require_relative 'piece'
 class Queen < Piece
   attr_accessor :image
 
-  def initialize(initial_position, color)
-    super(initial_position, color, color == 'white' ? '♛' : '♕')
+  def initialize(color)
+    super(color, color == 'white' ? '♛' : '♕')
   end
 end
