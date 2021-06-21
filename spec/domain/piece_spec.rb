@@ -5,20 +5,13 @@ require 'domain/pieces/piece'
 require 'domain/position'
 
 describe Piece do
-  let(:initial_position) { Position.new(1, 0) }
   let(:color) { 'white' }
   let(:image) { 'p' }
-  let(:piece) { Piece.new(initial_position, color, image) }
+  let(:piece) { Piece.new(color, image) }
 
   describe 'new piece' do
-    it 'must have initial position' do
-      expect(piece.initial_position.row).to eql(initial_position.row)
-      expect(piece.initial_position.col).to eql(initial_position.col)
-    end
-
-    it 'current position must initialize equal to initial position' do
-      expect(piece.current_position.row).to eql(initial_position.row)
-      expect(piece.current_position.col).to eql(initial_position.col)
+    it 'current position must initialize nil' do
+      expect(piece.current_position).to be_nil
     end
 
     it 'must have color' do
@@ -32,12 +25,12 @@ describe Piece do
 
   describe '.white?' do
     it 'return false if piece black' do
-      piece = Piece.new(initial_position, 'black', image)
+      piece = Piece.new('black', image)
       expect(piece.white?).to be false
     end
 
     it 'return true if piece white' do
-      piece = Piece.new(initial_position, 'white', image)
+      piece = Piece.new('white', image)
       expect(piece.white?).to be true
     end
   end

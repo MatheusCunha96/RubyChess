@@ -52,7 +52,7 @@ class Board
   def move_piece(orig, dest)
     piece = orig.piece
 
-    @positions[dest.row][dest.col].add_piece(piece)
+    @positions[dest.row][dest.col].piece = piece
     @positions[orig.row][orig.col].remove_piece
   end
 
@@ -69,38 +69,38 @@ class Board
     white_pawns_row = @positions[1]
     black_pawns_row = @positions[6]
 
-    white_pawns_row.each_with_index { |_, col| white_pawns_row[col].piece = Pawn.new([1,col], 'white') }
-    black_pawns_row.each_with_index { |_, col| black_pawns_row[col].piece = Pawn.new([6,col], 'black') }
+    white_pawns_row.each_with_index { |_, col| white_pawns_row[col].piece = Pawn.new('white') }
+    black_pawns_row.each_with_index { |_, col| black_pawns_row[col].piece = Pawn.new('black') }
   end
 
   def set_initial_rooks
-    @positions[0][0].piece = Rook.new([0,0], 'white')
-    @positions[0][7].piece = Rook.new([0,7], 'white')
-    @positions[7][0].piece = Rook.new([7,0], 'black')
-    @positions[7][7].piece = Rook.new([7,7], 'black')
+    @positions[0][0].piece = Rook.new('white')
+    @positions[0][7].piece = Rook.new('white')
+    @positions[7][0].piece = Rook.new('black')
+    @positions[7][7].piece = Rook.new('black')
   end
 
   def set_initial_knights
-    @positions[0][1].piece = Knight.new([0,1], 'white')
-    @positions[0][6].piece = Knight.new([0,6], 'white')
-    @positions[7][1].piece = Knight.new([7,1], 'black')
-    @positions[7][6].piece = Knight.new([7,6], 'black')
+    @positions[0][1].piece = Knight.new('white')
+    @positions[0][6].piece = Knight.new('white')
+    @positions[7][1].piece = Knight.new('black')
+    @positions[7][6].piece = Knight.new('black')
   end
 
   def set_initial_bishops
-    @positions[0][2].piece = Bishop.new([0,2], 'white')
-    @positions[0][5].piece = Bishop.new([0,5], 'white')
-    @positions[7][2].piece = Bishop.new([7,2], 'black')
-    @positions[7][5].piece = Bishop.new([7,5], 'black')
+    @positions[0][2].piece = Bishop.new('white')
+    @positions[0][5].piece = Bishop.new('white')
+    @positions[7][2].piece = Bishop.new('black')
+    @positions[7][5].piece = Bishop.new('black')
   end
 
   def set_initial_queens
-    @positions[0][3].piece = Queen.new([0,3], 'white')
-    @positions[7][3].piece = Queen.new([7,3], 'black')
+    @positions[0][3].piece = Queen.new('white')
+    @positions[7][3].piece = Queen.new('black')
   end
 
   def set_initial_kings
-    @positions[0][4].piece = King.new([0,4], 'white')
-    @positions[7][4].piece = King.new([7,4], 'black')
+    @positions[0][4].piece = King.new('white')
+    @positions[7][4].piece = King.new('black')
   end
 end

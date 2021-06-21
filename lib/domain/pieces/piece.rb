@@ -6,9 +6,8 @@ class Piece
 
   # TODO: better remove image from piece, thats drawer responsability
   # TODO: initial position useless, we must set current position when piece attribute to position. So, when initialize piece, we can put current position as nil
-  def initialize(initial_position, color, image)
-    @initial_position = initial_position
-    @current_position = initial_position
+  def initialize(color, image)
+    @current_position = nil
     @color = color
     @image = image
   end

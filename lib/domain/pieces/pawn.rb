@@ -6,11 +6,11 @@ class Pawn < Piece
   attr_accessor :image
   attr_reader :possible_moves
 
-  def initialize(initial_position, color)
+  def initialize(color)
     # TODO: en passant
     @possible_moves = set_possible_moves(color)
 
-    super(initial_position, color, color == 'white' ? '♟' : '♙')
+    super(color, color == 'white' ? '♟' : '♙')
   end
 
   def find_moves(board)

@@ -9,7 +9,7 @@ class Position
     @piece = nil
   end
 
-  def add_piece(piece)
+  def piece=(piece)
     @piece = piece
     piece.current_position = as_array
   end

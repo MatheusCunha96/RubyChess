@@ -15,14 +15,26 @@ describe Position do
     end
   end
 
-  describe '#add_piece' do
+  describe '#piece=' do
     it 'add piece to position and update piece current position' do
-      piece = Pawn.new([2,3], 'white')
+      piece = Pawn.new('white')
 
-      position.add_piece(piece)
+      position.piece = piece
 
       expect(position.piece).to be_instance_of(Pawn)
       expect(piece.current_position).to match_array([2,3])
+    end
+  end
+
+  describe '#remove_piece' do
+    it 'set position piece to nil' do
+      position = Position.new(1,1)
+      piece = Pawn.new('white')
+      position.piece = piece
+
+      position.remove_piece
+
+      expect(position.piece).to be_nil
     end
   end
 
