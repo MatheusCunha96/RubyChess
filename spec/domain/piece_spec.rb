@@ -30,7 +30,7 @@ describe Piece do
     end
   end
 
-  describe 'white?' do
+  describe '.white?' do
     it 'return false if piece black' do
       piece = Piece.new(initial_position, 'black', image)
       expect(piece.white?).to be false

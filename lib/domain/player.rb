@@ -10,7 +10,7 @@ class Player
   end
 
   def move
-    puts 'Write your move in format: [Letter][Number] to [Letter][Number] (ex. e2 to e3).'
+    puts "Player #{name} turn. Write your move in format: [Letter][Number] to [Letter][Number] (ex. e2 to e3)."
     move = STDIN.gets.chomp.downcase
 
     until move =~ move_format
@@ -33,7 +33,7 @@ class Player
       col = position_splitted[0].bytes.first - 97
       row = position_splitted[1].to_i - 1
 
-      Position.new(row, col)
+      [row,col]
     end
   end
 end

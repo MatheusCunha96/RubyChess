@@ -18,11 +18,13 @@ class Chess
     create_players
 
     until finish_condition?
+      move_succeed = false
       current_player = (@turn % 2).zero? ? @player_white : @player_black
 
-      # TODO: validate move
-      move = current_player.move
-      execute_move(move)
+      until move_succeed
+        move = current_player.move
+        move_succeed = execute_move(move)
+      end
 
       @turn += 1
       @board.display

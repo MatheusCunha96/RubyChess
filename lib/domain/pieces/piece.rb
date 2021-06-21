@@ -15,4 +15,16 @@ class Piece
   def white?
     @color == 'white'
   end
+
+  def  current_col
+    @current_position[1]
+  end
+
+  def current_row
+    @current_position[0]
+  end
+
+  def find_moves(board)
+    []
+  end
 end
