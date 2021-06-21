@@ -4,7 +4,8 @@ class Piece
   attr_reader :initial_position, :image, :color
   attr_accessor :current_position
 
-  # TODO: imagem na peça? melhor nao
+  # TODO: better remove image from piece, thats drawer responsability
+  # TODO: initial position useless, we must set current position when piece attribute to position. So, when initialize piece, we can put current position as nil
   def initialize(initial_position, color, image)
     @initial_position = initial_position
     @current_position = initial_position

@@ -52,10 +52,8 @@ class Board
   def move_piece(orig, dest)
     piece = orig.piece
 
-    @positions[dest.row][dest.col].piece = piece
-    @positions[orig.row][orig.col].piece = nil
-
-    piece.current_position = [dest.row, dest.col]
+    @positions[dest.row][dest.col].add_piece(piece)
+    @positions[orig.row][orig.col].remove_piece
   end
 
   def set_initial_state
