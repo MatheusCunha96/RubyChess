@@ -17,8 +17,8 @@ class Pawn < Piece
     moves = []
 
     @possible_moves.each_key do |move|
-      column = @current_position.col + @possible_moves[move][0]
-      row = @current_position.row + @possible_moves[move][1]
+      column = current_col + @possible_moves[move][0]
+      row = current_row + @possible_moves[move][1]
 
       case move
       when :one_step

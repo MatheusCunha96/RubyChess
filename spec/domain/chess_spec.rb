@@ -37,15 +37,15 @@ describe Chess do
 
       expect(Player).to receive(:new).and_return(white_player_double)
       expect(Player).to receive(:new).and_return(black_player_double)
-      expect(white_player_double).to receive(:move).and_return([Position.new(1, 4), Position.new(2, 4)])
-      expect(black_player_double).to receive(:move).and_return([Position.new(6, 4), Position.new(5, 4)])
+      expect(white_player_double).to receive(:move).and_return([[1,4],[2,4]])
+      expect(black_player_double).to receive(:move).and_return([[6,4],[5,4]])
 
       subject.play
 
-      expect(subject.board.positions[1][4]).to eql(nil)
-      expect(subject.board.positions[2][4]).to be_instance_of(Pawn)
-      expect(subject.board.positions[6][4]).to eql(nil)
-      expect(subject.board.positions[5][4]).to be_instance_of(Pawn)
+      expect(subject.board.positions[1][4].piece).to eql(nil)
+      expect(subject.board.positions[2][4].piece).to be_instance_of(Pawn)
+      expect(subject.board.positions[6][4].piece).to eql(nil)
+      expect(subject.board.positions[5][4].piece).to be_instance_of(Pawn)
     end
 
     describe 'finish condition'

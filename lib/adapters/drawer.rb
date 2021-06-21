@@ -21,11 +21,11 @@ class Drawer
   end
 
   def display_row(row, display_number)
-    row.each_with_index do |piece, position|
-      print position.zero? ? "  #{display_number} " : ' '
+    row.each_with_index do |position, index|
+      print index.zero? ? "  #{display_number} " : ' '
       print '│  '
-      print piece.nil? ? '.' : piece.image
-      print ' │' if position == 7
+      print position.piece.nil? ? '.' : position.piece.image
+      print ' │' if index == 7
     end
     print("\n")
   end

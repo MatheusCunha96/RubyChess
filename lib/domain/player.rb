@@ -33,7 +33,7 @@ class Player
       col = position_splitted[0].bytes.first - 97
       row = position_splitted[1].to_i - 1
 
-      Position.new(row, col)
+      [row,col]
     end
   end
 end
