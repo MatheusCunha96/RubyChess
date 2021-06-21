@@ -55,7 +55,7 @@ class Board
     @positions[dest.row][dest.col].piece = piece
     @positions[orig.row][orig.col].piece = nil
 
-    piece.current_position = dest
+    piece.current_position = [dest.row, dest.col]
   end
 
   def set_initial_state
