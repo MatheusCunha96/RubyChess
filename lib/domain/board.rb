@@ -54,6 +54,8 @@ class Board
 
     @positions[dest.row][dest.col].piece = piece
     @positions[orig.row][orig.col].remove_piece
+
+    piece.moved = true if piece.instance_of?(Pawn)
   end
 
   def set_initial_state

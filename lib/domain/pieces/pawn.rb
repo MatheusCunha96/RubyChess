@@ -3,7 +3,7 @@
 require_relative 'piece'
 
 class Pawn < Piece
-  attr_accessor :image
+  attr_accessor :image, :moved
   attr_reader :possible_moves
 
   def initialize(color)
@@ -21,6 +21,9 @@ class Pawn < Piece
     @possible_moves.each_key do |move|
       column = current_col + @possible_moves[move][0]
       row = current_row + @possible_moves[move][1]
+
+      next if column > 7 || row > 7
+
       position_state = board.position_state(row, column)
 
       case move
