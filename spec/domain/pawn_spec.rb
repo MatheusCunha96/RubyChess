@@ -83,7 +83,7 @@ describe Pawn do
         expect(moves).to include([2,1])
       end
 
-      it 'fail if next position no empty' do
+      it 'fail if next position not empty' do
         pawn = board.positions[1][4].piece
         moves = pawn.find_moves(board)
 

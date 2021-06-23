@@ -9,6 +9,8 @@ class Pawn < Piece
   def initialize(color)
     # TODO: en passant
     @possible_moves = set_possible_moves(color)
+    # TODO: set to true after move piece
+    @moved = false
 
     super(color, color == 'white' ? '♟' : '♙')
   end
@@ -19,14 +21,17 @@ class Pawn < Piece
     @possible_moves.each_key do |move|
       column = current_col + @possible_moves[move][0]
       row = current_row + @possible_moves[move][1]
+      position_state = board.position_state(row, column)
 
       case move
       when :one_step
-        moves << [row, column] if board.position_state(row,column).nil?
+        moves << [row, column] if position_state.nil?
       when :capture_left, :capture_right
-        position_state = board.position_state(row, column)
-
         moves << [row, column] if position_state != @color && position_state !=nil
+      when :double_step
+        front_position_state = board.position_state(current_row + 1, current_col)
+
+        moves << [row, column] if position_state.nil? && front_position_state.nil? && !@moved
       end
     end
 
