@@ -34,7 +34,7 @@ class Board
     if possible_moves.include?(dest)
       move_piece(orig_position, dest_position)
     else
-      Messager.not_possible_move(possible_moves)
+      Messenger.not_possible_move(possible_moves)
       return false
     end
 

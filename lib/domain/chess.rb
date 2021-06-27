@@ -2,6 +2,7 @@
 
 require_relative 'board'
 require_relative 'player'
+require_relative '../adapters/messenger'
 require 'byebug'
 
 class Chess
@@ -21,6 +22,7 @@ class Chess
       move_succeed = false
       current_player = (@turn % 2).zero? ? @player_white : @player_black
 
+      Messenger.notice_player_turn(current_player.name)
       until move_succeed
         move = current_player.move
         move_succeed = execute_move(move)
@@ -41,11 +43,8 @@ class Chess
   end
 
   def create_players
-    puts 'Enter player white name: '
-    player_white = STDIN.gets.chomp
-
-    puts 'Enter player black name: '
-    player_black = STDIN.gets.chomp
+    player_white = Messenger.ask_player_name('white')
+    player_black = Messenger.ask_player_name('black')
 
     @player_white = Player.new(player_white)
     @player_black = Player.new(player_black)

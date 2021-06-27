@@ -30,7 +30,9 @@ describe Chess do
   describe '.play' do
     it 'simple move' do
       white_player_double = instance_double(Player)
+      allow(white_player_double).to receive(:name).and_return('John')
       black_player_double = instance_double(Player)
+      allow(black_player_double).to receive(:name).and_return('Josh')
 
       mock_input
       finish_game_after_move(2)

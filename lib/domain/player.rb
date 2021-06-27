@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'position'
+require_relative '../adapters/messenger'
 
 class Player
   attr_reader :name
@@ -10,12 +11,10 @@ class Player
   end
 
   def move
-    puts "Player #{name} turn. Write your move in format: [Letter][Number] to [Letter][Number] (ex. e2 to e3)."
-    move = STDIN.gets.chomp.downcase
+    move = Messenger.ask_player_move
 
     until move =~ move_format
-      puts 'Please, write your move in correct format (ex. e2 to e3).'
-      move = STDIN.gets.chomp.downcase
+      move = Messenger.ask_player_move
     end
 
     move_to_position(move_format.match(move).captures)
