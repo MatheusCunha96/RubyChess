@@ -9,7 +9,6 @@ class Pawn < Piece
   def initialize(color)
     # TODO: en passant
     @possible_moves = set_possible_moves(color)
-    # TODO: set to true after move piece
     @moved = false
 
     super(color, color == 'white' ? '♟' : '♙')
