@@ -8,7 +8,7 @@ require_relative 'pieces/bishop'
 require_relative 'pieces/queen'
 require_relative 'pieces/king'
 require_relative '../adapters/drawer'
-require_relative '../adapters/messager'
+require_relative '../adapters/messenger'
 
 class Board
   attr_accessor :positions
