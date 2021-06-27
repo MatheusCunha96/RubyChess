@@ -6,7 +6,7 @@ require 'domain/position'
 require 'domain/board'
 
 describe Pawn do
-  describe 'new' do
+  describe '.new' do
     let(:color) { 'white' }
     let(:pawn) { Pawn.new(color) }
 
@@ -59,7 +59,7 @@ describe Pawn do
     end
   end
 
-  describe '.find_moves' do
+  describe '#find_moves' do
     let(:board) { Board.new }
 
     after { reset_board(board) }
@@ -234,10 +234,5 @@ describe Pawn do
         end
       end
     end
-  end
-
-  def reset_board(board)
-    board.positions = Array.new(8) { |row| Array.new(8) { |col| Position.new(row, col) } }
-    board.send(:set_initial_state)
   end
 end
