@@ -45,47 +45,46 @@ describe Knight do
         ])
       end
     end
-
-    describe '#find_moves' do
-      let(:board) { Board.new }
-
-      after { reset_board(board) }
-
-      it 'has two moves from initial position' do
-        expected_moves = [[2,6], [2,8]]
-        knight = board.positions[0][7].piece
-        moves = knight.find_moves(board)
-
-        moves.each do |move|
-          expect(expected_moves).to include(move)
-        end
-      end
-
-      it 'can move to place with different color piece' do
-        expected_moves = [[5, 6], [3, 6], [6, 5], [6, 3], [3, 2], [5, 2], [2, 3], [2, 5]]
-        move_piece(board, [0,6], [4,4])
-
-        knight = board.positions[4][4].piece
-        moves = knight.find_moves(board)
-
-        moves.each do |move|
-          expect(expected_moves).to include(move)
-        end
-      end
-
-      it 'cant move to place with same color piece' do
-        expected_moves = [[4, 6], [2, 6], [5, 5], [5, 3], [2, 2], [4, 2]]
-        move_piece(board, [0,6], [3,4])
-
-        knight = board.positions[3][4].piece
-        moves = knight.find_moves(board)
-
-        moves.each do |move|
-          expect(expected_moves).to include(move)
-        end
-
-      end
-    end
   end
 
+  describe '#find_moves' do
+    let(:board) { Board.new }
+
+    after { reset_board(board) }
+
+    it 'has two moves from initial position' do
+      expected_moves = [[2,5], [2,7]]
+      knight = board.positions[0][6].piece
+      moves = knight.find_moves(board)
+
+      moves.each do |move|
+        expect(expected_moves).to include(move)
+      end
+    end
+
+    it 'can move to place with different color piece' do
+      expected_moves = [[5, 6], [3, 6], [6, 5], [6, 3], [3, 2], [5, 2], [2, 3], [2, 5]]
+      move_piece(board, [0,6], [4,4])
+
+      knight = board.positions[4][4].piece
+      moves = knight.find_moves(board)
+
+      moves.each do |move|
+        expect(expected_moves).to include(move)
+      end
+    end
+
+    it 'cant move to place with same color piece' do
+      expected_moves = [[4, 6], [2, 6], [5, 5], [5, 3], [2, 2], [4, 2]]
+      move_piece(board, [0,6], [3,4])
+
+      knight = board.positions[3][4].piece
+      moves = knight.find_moves(board)
+
+      moves.each do |move|
+        expect(expected_moves).to include(move)
+      end
+
+    end
+  end
 end
