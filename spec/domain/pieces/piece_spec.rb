@@ -23,7 +23,7 @@ describe Piece do
     end
   end
 
-  describe '.white?' do
+  describe '#white?' do
     it 'return false if piece black' do
       piece = Piece.new('black', image)
       expect(piece.white?).to be false
@@ -32,6 +32,36 @@ describe Piece do
     it 'return true if piece white' do
       piece = Piece.new('white', image)
       expect(piece.white?).to be true
+    end
+  end
+
+  describe '#current_col' do
+    it 'return nil for piece current position nil' do
+      piece = Piece.new('white', image)
+
+      expect(piece.current_col).to be_nil
+    end
+
+    it 'return piece current column' do
+      piece = Piece.new('white', image)
+      piece.current_position = [1,2]
+
+      expect(piece.current_col).to eql(2)
+    end
+  end
+
+  describe '#current_row' do
+    it 'return nil for piece current position nil' do
+      piece = Piece.new('white', image)
+
+      expect(piece.current_row).to be_nil
+    end
+
+    it 'return piece current column' do
+      piece = Piece.new('white', image)
+      piece.current_position = [1,2]
+
+      expect(piece.current_row).to eql(1)
     end
   end
 end
