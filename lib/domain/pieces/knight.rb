@@ -19,7 +19,7 @@ class Knight < Piece
       column = current_col + move[0]
       row = current_row + move[1]
 
-      next if column > 7 || row > 7
+      next if Piece.out_of_bounds?(row, column)
 
       position_state = board.position_state(row, column)
 
