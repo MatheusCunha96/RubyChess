@@ -31,7 +31,8 @@ class Pawn < Piece
       when :capture_left, :capture_right
         moves << [row, column] if position_state != @color && position_state !=nil
       when :double_step
-        front_position_state = board.position_state(current_row + 1, current_col)
+        front_position_row = @color == 'white' ? (current_row + 1) : (current_row - 1)
+        front_position_state = board.position_state(front_position_row, current_col)
 
         moves << [row, column] if position_state.nil? && front_position_state.nil? && !@moved
       end
