@@ -3,11 +3,12 @@
 require_relative 'piece'
 
 class Rook < Piece
-  attr_accessor :image
-  attr_reader :possible_moves
+  attr_accessor :image, :moved
+  attr_reader :directions
 
   def initialize(color)
-    @possible_moves = set_possible_moves
+    @directions = set_directions
+    @moved = false
 
     super(color, color == 'white' ? '♜' : '♖')
   end
@@ -15,13 +16,13 @@ class Rook < Piece
   def find_moves(board)
     moves = []
 
-    @possible_moves.each do |move|
-      column = current_col + move[0]
-      row = current_row + move[1]
+    @directions.each do |direction|
+      column = current_col + direction[0]
+      row = current_row + direction[1]
 
       loop do
-        # TODO: set this condition as board function
-        break if column > 7 || column < 0 || row > 7 || row < 0
+        break if Piece.out_of_bounds?(row, column)
+
         position_state = board.position_state(row, column)
 
         if position_state.nil?
@@ -33,8 +34,8 @@ class Rook < Piece
           break
         end
 
-        column += move[0]
-        row += move[1]
+        column += direction[0]
+        row += direction[1]
       end
     end
 
@@ -43,12 +44,12 @@ class Rook < Piece
 
   private
 
-  def set_possible_moves
+  def set_directions
     [
-      [0,1],
-      [0,-1],
-      [1,0],
-      [-1,0],
+      [0, 1],
+      [0, -1],
+      [1, 0],
+      [-1, 0]
     ]
   end
 

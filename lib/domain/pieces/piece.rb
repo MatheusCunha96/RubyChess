@@ -11,6 +11,10 @@ class Piece
     @image = image
   end
 
+  def self.out_of_bounds?(row, column)
+    column > 7 || column.negative? || row > 7 || row.negative?
+  end
+
   def white?
     @color == 'white'
   end

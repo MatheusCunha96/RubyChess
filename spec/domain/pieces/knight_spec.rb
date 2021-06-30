@@ -33,16 +33,16 @@ describe Knight do
     describe 'possible moves' do
       it 'must have correct possibles move' do
         knight = Knight.new('white')
-        expect(knight.possible_moves).to eql([
-          [2,1],
-          [2,-1],
-          [1,2],
-          [-1,2],
-          [-2,-1],
-          [-2, 1],
-          [-1,-2],
-          [1,-2]
-        ])
+        expect(knight.possible_moves).to eql(
+          [[2, 1],
+           [2, -1],
+           [1, 2],
+           [-1, 2],
+           [-2, -1],
+           [-2, 1],
+           [-1, -2],
+           [1, -2]]
+        )
       end
     end
   end
@@ -53,7 +53,7 @@ describe Knight do
     after { reset_board(board) }
 
     it 'has two moves from initial position' do
-      expected_moves = [[2,5], [2,7]]
+      expected_moves = [[2, 5], [2, 7]]
       knight = board.positions[0][6].piece
       moves = knight.find_moves(board)
 
@@ -64,7 +64,7 @@ describe Knight do
 
     it 'can move to place with different color piece' do
       expected_moves = [[5, 6], [3, 6], [6, 5], [6, 3], [3, 2], [5, 2], [2, 3], [2, 5]]
-      move_piece(board, [0,6], [4,4])
+      move_piece(board, [0, 6], [4, 4])
 
       knight = board.positions[4][4].piece
       moves = knight.find_moves(board)
@@ -76,7 +76,7 @@ describe Knight do
 
     it 'cant move to place with same color piece' do
       expected_moves = [[4, 6], [2, 6], [5, 5], [5, 3], [2, 2], [4, 2]]
-      move_piece(board, [0,6], [3,4])
+      move_piece(board, [0, 6], [3, 4])
 
       knight = board.positions[3][4].piece
       moves = knight.find_moves(board)

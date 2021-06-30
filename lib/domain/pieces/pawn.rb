@@ -21,7 +21,7 @@ class Pawn < Piece
       column = current_col + @possible_moves[move][0]
       row = current_row + @possible_moves[move][1]
 
-      next if column > 7 || column < 0 || row > 7 || row < 0
+      next if Piece.out_of_bounds?(row, column)
 
       position_state = board.position_state(row, column)
 
