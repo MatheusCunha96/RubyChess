@@ -52,5 +52,4 @@ class Rook < Piece
       [-1, 0]
     ]
   end
-
 end
