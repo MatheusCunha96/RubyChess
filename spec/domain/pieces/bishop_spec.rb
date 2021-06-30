@@ -47,5 +47,25 @@ describe Bishop do
     end
   end
 
+  describe '#find_moves' do
+    it 'has no moves from initial position' do
+      bishop = board.positions[0][5].piece
+      moves = bishop.find_moves(board)
+
+      expect(moves).to be_empty
+    end
+
+    it 'can move to position with different color piece, but cant to position with same color piece ' do
+      expected_moves = [[5, 5], [6, 6], [3, 5], [2, 6], [5, 3], [6, 2], [3, 3], [2, 2]]
+      move_piece(board, [0, 5], [4, 4])
+      bishop = board.positions[4][4].piece
+      moves = bishop.find_moves(board)
+
+      moves.each do |move|
+        expect(expected_moves).to include(move)
+      end
+    end
+  end
+
 end
 
