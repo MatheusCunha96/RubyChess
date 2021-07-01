@@ -51,4 +51,24 @@ describe Queen do
     end
   end
 
+  describe '#find_moves' do
+    it 'has no moves from initial position' do
+      queen= board.positions[0][3].piece
+      moves = queen.find_moves(board)
+
+      expect(moves).to be_empty
+    end
+
+    it 'can move to position with different color piece, but cant to position with same color piece ' do
+      expected_moves = [[5, 4], [6, 4], [3, 4], [2, 4], [4, 5], [4, 6], [4, 7], [4, 3], [4, 2], [4, 1], [4, 0], [5, 5], [6, 6], [3, 5], [2, 6], [5, 3], [6, 2], [3, 3], [2, 2]]
+      move_piece(board, [0, 3], [4, 4])
+      queen = board.positions[4][4].piece
+      moves = queen.find_moves(board)
+
+      moves.each do |move|
+        expect(expected_moves).to include(move)
+      end
+    end
+  end
+
 end
