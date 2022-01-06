@@ -117,13 +117,35 @@ describe Board do
   end
 
   describe '.update_positions' do
-    it 'move piece from orig to dest' do
-      orig = [1,5]
-      dest = [2,5]
-      board.update_positions(orig, dest)
+    context 'when position has piece' do
+      let(:orig) { [1, 5] }
+      let(:dest) { [2, 5] }
 
-      expect(board.positions[1][5].piece).to be_nil
-      expect(board.positions[2][5].piece).to be_instance_of(Pawn)
+      it 'move piece from orig to dest' do
+        board.update_positions(orig, dest)
+
+        expect(board.positions[1][5].piece).to be_nil
+        expect(board.positions[2][5].piece).to be_instance_of(Pawn)
+      end
+    end
+
+    context 'when position is empty' do
+      let(:orig) { [2, 5] }
+      let(:dest) { [1, 5] }
+
+      before do
+        allow(Messenger).to receive(:notify_empty_position)
+      end
+
+      it 'notify empty position' do
+        board.update_positions(orig, dest)
+
+        expect(Messenger).to have_received(:notify_empty_position)
+      end
+
+      it 'return false' do
+        expect(board.update_positions(orig, dest)).to be_falsy
+      end
     end
   end
 

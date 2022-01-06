@@ -22,7 +22,7 @@ class Chess
       move_succeed = false
       current_player = (@turn % 2).zero? ? @player_white : @player_black
 
-      Messenger.notice_player_turn(current_player.name)
+      Messenger.notify_player_turn(current_player.name)
       until move_succeed
         move = current_player.move
         move_succeed = execute_move(move)

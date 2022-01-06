@@ -29,19 +29,24 @@ class Board
 
     moved_piece = orig_position.piece
 
+    if moved_piece.nil?
+      Messenger.notify_empty_position
+      return false
+    end
+
     possible_moves = moved_piece.find_moves(self)
 
     if possible_moves.include?(dest)
       move_piece(orig_position, dest_position)
     else
-      Messenger.not_possible_move(possible_moves)
+      Messenger.notify_not_possible_move(possible_moves)
       return false
     end
 
     true
   end
 
-  def position_state(x,y)
+  def position_state(x, y)
     return nil if @positions[x][y].piece.nil?
 
     @positions[x][y].piece.color
