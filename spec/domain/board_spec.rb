@@ -131,6 +131,10 @@ describe Board do
         expect(subject.positions[1][5].piece).to be_nil
         expect(subject.positions[2][5].piece).to be_instance_of(Pawn)
       end
+
+      it 'return true' do
+        expect(subject.execute_move(player, move)).to be_truthy
+      end
     end
 
     context 'when position is empty' do
