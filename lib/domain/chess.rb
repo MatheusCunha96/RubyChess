@@ -25,7 +25,7 @@ class Chess
       Messenger.notify_player_turn(current_player.name)
       until move_succeed
         move = current_player.move
-        move_succeed = execute_move(move)
+        move_succeed = @board.execute_move(current_player, move)
       end
 
       @turn += 1
@@ -35,24 +35,20 @@ class Chess
 
   private
 
-  def execute_move(move)
-    orig = move[0]
-    dest = move[1]
-
-    @board.update_positions(orig, dest)
-  end
-
   def create_players
     player_white = Messenger.ask_player_name('white')
     player_black = Messenger.ask_player_name('black')
 
-    @player_white = Player.new(player_white)
-    @player_black = Player.new(player_black)
+    @player_white = Player.new(player_white, 'white')
+    @player_black = Player.new(player_black, 'black')
   end
 
   def finish_condition?
     # checkmate
-    # dead position ( king vs king; king vs king and bishop; king vs king and knight; king and bishop vs king and bishop if bishop from squares of same color)
+    # dead position - king vs king;
+    #               - king vs king and bishop;
+    #               - king vs king and knight;
+    #               - king and bishop vs king and bishop if bishop from squares of same color)
     # stalemate
     checkmate?
   end

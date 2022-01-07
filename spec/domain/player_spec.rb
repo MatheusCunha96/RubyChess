@@ -4,10 +4,14 @@ require 'spec_helper'
 require 'domain/player'
 
 describe Player do
-  let(:subject) { Player.new('John') }
+  let(:subject) { Player.new('John', 'white') }
 
   it 'has a name' do
     expect(subject.name).to eql('John')
+  end
+
+  it 'has a color' do
+    expect(subject.color).to eql('white')
   end
 
   describe '.move' do

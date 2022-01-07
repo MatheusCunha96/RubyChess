@@ -18,8 +18,6 @@ class Position
     @piece = nil
   end
 
-  private
-
   def as_array
     [@row, @col]
   end

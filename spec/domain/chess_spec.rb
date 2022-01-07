@@ -31,16 +31,18 @@ describe Chess do
     it 'simple move' do
       white_player_double = instance_double(Player)
       allow(white_player_double).to receive(:name).and_return('John')
+      allow(white_player_double).to receive(:color).and_return('white')
       black_player_double = instance_double(Player)
       allow(black_player_double).to receive(:name).and_return('Josh')
+      allow(black_player_double).to receive(:color).and_return('black')
 
       mock_input
       finish_game_after_move(2)
 
       expect(Player).to receive(:new).and_return(white_player_double)
       expect(Player).to receive(:new).and_return(black_player_double)
-      expect(white_player_double).to receive(:move).and_return([[1,4],[2,4]])
-      expect(black_player_double).to receive(:move).and_return([[6,4],[5,4]])
+      expect(white_player_double).to receive(:move).and_return([[1, 4], [2, 4]])
+      expect(black_player_double).to receive(:move).and_return([[6, 4], [5, 4]])
 
       subject.play
 
@@ -62,7 +64,7 @@ end
 def mock_input
   gets = double
   chomp = double
-  allow(STDIN).to receive(:gets).and_return(gets)
+  allow($stdin).to receive(:gets).and_return(gets)
   allow(gets).to receive(:chomp).and_return(chomp)
   allow(chomp).to receive(:downcase).and_return(anything)
 end

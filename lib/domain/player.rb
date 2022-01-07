@@ -4,10 +4,11 @@ require_relative 'position'
 require_relative '../adapters/messenger'
 
 class Player
-  attr_reader :name
+  attr_reader :name, :color
 
-  def initialize(name)
+  def initialize(name, color)
     @name = name
+    @color = color
   end
 
   def move

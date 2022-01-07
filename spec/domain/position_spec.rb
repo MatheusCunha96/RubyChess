@@ -22,7 +22,7 @@ describe Position do
       position.piece = piece
 
       expect(position.piece).to be_instance_of(Pawn)
-      expect(piece.current_position).to match_array([2,3])
+      expect(piece.current_position).to match_array([2, 3])
     end
   end
 
@@ -38,9 +38,9 @@ describe Position do
     end
   end
 
-  describe '#position_as_array' do
+  describe '#as_array' do
     it 'returns position row and column in array style' do
-      expect(position.send(:as_array)).to match_array([2,3])
+      expect(position.as_array).to match_array([2, 3])
     end
   end
 

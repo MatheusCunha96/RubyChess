@@ -29,7 +29,7 @@ class Pawn < Piece
       when :one_step
         moves << [row, column] if position_state.nil?
       when :capture_left, :capture_right
-        moves << [row, column] if position_state != @color && position_state !=nil
+        moves << [row, column] if position_state != @color && !position_state.nil?
       when :double_step
         front_position_row = @color == 'white' ? (current_row + 1) : (current_row - 1)
         front_position_state = board.position_state(front_position_row, current_col)
@@ -46,17 +46,17 @@ class Pawn < Piece
   def set_possible_moves(color)
     if color == 'white'
       {
-        one_step:      [0,1],
-        double_step:   [0,2],
-        capture_left:  [-1,1],
-        capture_right: [1,1]
+        one_step:      [0, 1],
+        double_step:   [0, 2],
+        capture_left:  [-1, 1],
+        capture_right: [1, 1]
       }
     else
       {
-        one_step:      [0,-1],
-        double_step:   [0,-2],
-        capture_left:  [1,-1],
-        capture_right: [-1,-1]
+        one_step:      [0, -1],
+        double_step:   [0, -2],
+        capture_left:  [1, -1],
+        capture_right: [-1, -1]
       }
     end
   end
