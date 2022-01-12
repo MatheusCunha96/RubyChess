@@ -23,49 +23,10 @@ class Board
     @drawer.display(@positions)
   end
 
-  def execute_move(player, move)
-    orig = move[0]
-    dest = move[1]
-
-    orig_position = @positions[orig[0]][orig[1]]
-    dest_position = @positions[dest[0]][dest[1]]
-
-    return false unless validate_move(player, orig_position, dest_position)
-
-    move_piece(orig_position, dest_position)
-  end
-
   def position_state(x, y)
     return nil if @positions[x][y].piece.nil?
 
     @positions[x][y].piece.color
-  end
-
-  private
-
-  # TODO: maybe we will have an exclusive class for validation.
-  # this will get bigger when insert check/checkmate
-  def validate_move(player, orig, dest)
-    moved_piece = orig.piece
-
-    if moved_piece.nil?
-      Messenger.notify_empty_position
-      return false
-    end
-
-    if moved_piece.color != player.color
-      Messenger.notify_opponent_piece
-      return false
-    end
-
-    possible_moves = moved_piece.find_moves(self)
-
-    unless possible_moves.include?(dest.as_array)
-      Messenger.notify_not_possible_move(possible_moves)
-      return false
-    end
-
-    true
   end
 
   def move_piece(orig, dest)
@@ -78,6 +39,8 @@ class Board
 
     true
   end
+
+  private
 
   def set_initial_state
     set_initial_pawns

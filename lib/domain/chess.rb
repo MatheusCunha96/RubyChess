@@ -2,6 +2,7 @@
 
 require_relative 'board'
 require_relative 'player'
+require_relative 'move'
 require_relative '../adapters/messenger'
 require 'byebug'
 
@@ -25,7 +26,7 @@ class Chess
       Messenger.notify_player_turn(current_player.name)
       until move_succeed
         move = current_player.move
-        move_succeed = @board.execute_move(current_player, move)
+        move_succeed = Move.execute(current_player, move, @board)
       end
 
       @turn += 1
