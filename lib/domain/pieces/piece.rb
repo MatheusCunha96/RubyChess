@@ -2,11 +2,12 @@
 
 class Piece
   attr_reader :initial_position, :image, :color
-  attr_accessor :current_position
+  attr_accessor :current_position, :possible_moves
 
   # TODO: better remove image from piece, thats drawer responsability
   def initialize(color, image)
     @current_position = nil
+    @possible_moves = []
     @color = color
     @image = image
   end

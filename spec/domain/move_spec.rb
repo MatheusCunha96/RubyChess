@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'domain/move'
 require 'domain/board'
+require 'domain/player'
+require 'domain/pieces/piece'
 
 describe Move do
   let(:board) { Board.new }
@@ -15,6 +18,8 @@ describe Move do
     context 'when position has piece' do
       let(:orig) { [1, 5] }
       let(:dest) { [2, 5] }
+
+      before { mock_piece_possible_moves(board.positions[1][5].piece, [[2, 5]]) }
 
       it 'move piece from orig to dest' do
         described_class.execute(player, move, board)
@@ -82,6 +87,32 @@ describe Move do
 
       it 'return false' do
         expect(described_class.execute(player, move, board)).to be_falsy
+      end
+    end
+  end
+
+  describe '.update_pieces_possible_moves' do
+    it 'call find_moves for every piece in board' do
+      board.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          allow(current_piece).to receive(:find_moves)
+        end
+      end
+
+      described_class.update_pieces_possible_moves(board)
+
+      board.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          expect(current_piece).to have_received(:find_moves).with(board)
+        end
       end
     end
   end
