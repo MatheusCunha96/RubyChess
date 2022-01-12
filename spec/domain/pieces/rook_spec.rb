@@ -34,10 +34,10 @@ describe Rook do
       end
     end
 
-    describe 'directions' do
+    describe 'move_set' do
       it 'must have correct possibles move' do
         rook = Rook.new('white')
-        expect(rook.directions).to eql(
+        expect(rook.move_set).to eql(
           [[0, 1],
            [0, -1],
            [1, 0],

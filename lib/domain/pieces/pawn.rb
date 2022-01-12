@@ -4,11 +4,11 @@ require_relative 'piece'
 
 class Pawn < Piece
   attr_accessor :image, :moved
-  attr_reader :possible_moves
+  attr_reader :move_set
 
   def initialize(color)
     # TODO: en passant
-    @possible_moves = set_possible_moves(color)
+    @move_set = set_move_set(color)
     @moved = false
 
     super(color, color == 'white' ? '♟' : '♙')
@@ -17,9 +17,9 @@ class Pawn < Piece
   def find_moves(board)
     moves = []
 
-    @possible_moves.each_key do |move|
-      column = current_col + @possible_moves[move][0]
-      row = current_row + @possible_moves[move][1]
+    @move_set.each_key do |move|
+      column = current_col + @move_set[move][0]
+      row = current_row + @move_set[move][1]
 
       next if Piece.out_of_bounds?(row, column)
 
@@ -43,7 +43,7 @@ class Pawn < Piece
 
   private
 
-  def set_possible_moves(color)
+  def set_move_set(color)
     if color == 'white'
       {
         one_step:      [0, 1],

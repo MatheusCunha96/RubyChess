@@ -4,10 +4,10 @@ require_relative 'piece'
 
 class Bishop < Piece
   attr_accessor :image
-  attr_reader :directions
+  attr_reader :move_set
 
   def initialize(color)
-    @directions = set_directions
+    @move_set = set_move_set
 
     super(color, color == 'white' ? '♝' : '♗')
   end
@@ -15,7 +15,7 @@ class Bishop < Piece
   def find_moves(board)
     moves = []
 
-    @directions.each do |direction|
+    @move_set.each do |direction|
       column = current_col + direction[0]
       row = current_row + direction[1]
 
@@ -43,7 +43,7 @@ class Bishop < Piece
 
   private
 
-  def set_directions
+  def set_move_set
     [
       [1, 1],
       [1, -1],

@@ -9,3 +9,9 @@ Style/Documentation:
 
 Naming/MethodParameterName:
   MinNameLength: 1
+
+Layout/HashAlignment:
+  Enabled: false
+
+Layout/FirstHashElementIndentation:
+  Enabled: false

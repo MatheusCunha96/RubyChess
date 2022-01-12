@@ -4,10 +4,10 @@ require_relative 'piece'
 
 class Knight < Piece
   attr_accessor :image
-  attr_reader :possible_moves
+  attr_reader :move_set
 
   def initialize(color)
-    @possible_moves = set_possible_moves
+    @move_set = set_move_set
 
     super(color, color == 'white' ? '♞' : '♘')
   end
@@ -15,7 +15,7 @@ class Knight < Piece
   def find_moves(board)
     moves = []
 
-    @possible_moves.each do |move|
+    @move_set.each do |move|
       column = current_col + move[0]
       row = current_row + move[1]
 
@@ -31,16 +31,16 @@ class Knight < Piece
 
   private
 
-  def set_possible_moves
+  def set_move_set
     [
-      [2,1],
-      [2,-1],
-      [1,2],
-      [-1,2],
-      [-2,-1],
+      [2, 1],
+      [2, -1],
+      [1, 2],
+      [-1, 2],
+      [-2, -1],
       [-2, 1],
-      [-1,-2],
-      [1,-2]
+      [-1, -2],
+      [1, -2]
     ]
   end
 end

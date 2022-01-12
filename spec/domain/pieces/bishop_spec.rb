@@ -34,10 +34,10 @@ describe Bishop do
       end
     end
 
-    describe 'directions' do
+    describe 'move_set' do
       it 'must have correct possibles move' do
         bishop = Bishop.new('white')
-        expect(bishop.directions).to eql(
+        expect(bishop.move_set).to eql(
           [[1, 1],
            [1, -1],
            [-1, 1],

@@ -34,12 +34,12 @@ describe Pawn do
       context 'when white' do
         it 'must have correct possibles move' do
           pawn = Pawn.new('white')
-          expect(pawn.possible_moves).to eql({
-            one_step:      [0, 1],
-            double_step:   [0, 2],
-            capture_left:  [-1, 1],
-            capture_right: [1, 1]
-          }
+          expect(pawn.move_set).to eql({
+              one_step:      [0, 1],
+              double_step:   [0, 2],
+              capture_left:  [-1, 1],
+              capture_right: [1, 1]
+            }
           )
         end
       end
@@ -47,7 +47,7 @@ describe Pawn do
       context 'when black' do
         it 'must have correct possibles move' do
           pawn = Pawn.new('black')
-          expect(pawn.possible_moves).to eql({
+          expect(pawn.move_set).to eql({
             one_step:      [0, -1],
             double_step:   [0, -2],
             capture_left:  [1, -1],

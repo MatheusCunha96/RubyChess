@@ -34,10 +34,10 @@ describe Queen do
       end
     end
 
-    describe 'directions' do
+    describe 'move_set' do
       it 'must have correct possibles move' do
         queen = Queen.new('white')
-        expect(queen.directions).to eql(
+        expect(queen.move_set).to eql(
           [[0, 1],
            [0, -1],
            [1, 0],

@@ -33,7 +33,7 @@ describe Knight do
     describe 'possible moves' do
       it 'must have correct possibles move' do
         knight = Knight.new('white')
-        expect(knight.possible_moves).to eql(
+        expect(knight.move_set).to eql(
           [[2, 1],
            [2, -1],
            [1, 2],
