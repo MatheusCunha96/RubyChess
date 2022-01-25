@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Position
-  attr_accessor :row, :col, :piece
+  attr_accessor :row, :col, :piece, :being_attacked
 
   def initialize(row, col)
     @row = row
     @col = col
     @piece = nil
+    @being_attacked = false
   end
 
   def piece=(piece)

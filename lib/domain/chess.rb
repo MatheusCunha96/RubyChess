@@ -24,8 +24,6 @@ class Chess
       current_player = (@turn % 2).zero? ? @player_white : @player_black
       Messenger.notify_player_turn(current_player.name)
 
-      Move.update_pieces_possible_moves(@board)
-
       until move_succeed
         move = current_player.move
         move_succeed = Move.execute(current_player, move, @board)

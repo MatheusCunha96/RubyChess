@@ -44,7 +44,7 @@ describe Piece do
 
     it 'return piece current column' do
       piece = Piece.new('white', image)
-      piece.current_position = [1,2]
+      piece.current_position = [1, 2]
 
       expect(piece.current_col).to eql(2)
     end
@@ -59,7 +59,7 @@ describe Piece do
 
     it 'return piece current column' do
       piece = Piece.new('white', image)
-      piece.current_position = [1,2]
+      piece.current_position = [1, 2]
 
       expect(piece.current_row).to eql(1)
     end

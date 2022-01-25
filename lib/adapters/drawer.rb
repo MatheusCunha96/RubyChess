@@ -24,7 +24,15 @@ class Drawer
     row.each_with_index do |position, index|
       print index.zero? ? "  #{display_number} " : ' '
       print '│  '
-      print position.piece.nil? ? '.' : position.piece.image
+
+      if position.piece.nil? && !position.being_attacked
+        print '.'
+      elsif position.being_attacked
+        print 'x'
+      else
+        print position.piece.image
+      end
+
       print ' │' if index == 7
     end
     print("\n")
