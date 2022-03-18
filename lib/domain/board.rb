@@ -54,22 +54,23 @@ class Board
     end
   end
 
+  # TODO: test
   def update_positions_being_attacked
     @positions.each do |row|
       row.each do |position|
         piece = position.piece
 
-        next if piece.nil? || piece.possible_moves.empty?
+        next if piece.nil?
 
-        piece.possible_moves.each do |move|
-          row = move[0]
-          column = move[1]
+        piece.update_attacking_fields
 
-          if piece.instance_of?(Pawn)
-            @positions[row][column].being_attacked = true if column != piece.current_col
-          else
-            @positions[row][column].being_attacked = true
-          end
+        next if piece.attacking_fields.empty?
+
+        piece.attacking_fields.each do |field|
+          row = field[0]
+          column = field[1]
+
+          @positions[row][column].being_attacked = true
         end
       end
     end

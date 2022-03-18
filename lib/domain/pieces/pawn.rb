@@ -41,6 +41,23 @@ class Pawn < Piece
     moves
   end
 
+  # TODO: test
+  def update_attacking_fields
+    fields_being_attacked = []
+
+    row, left_column, right_column = if white?
+                                       [current_row + 1, current_col - 1, current_col + 1]
+                                     else
+                                       [current_row - 1, current_col - 1, current_col + 1]
+                                     end
+
+
+    fields_being_attacked << [row, right_column] unless Piece.out_of_bounds?(row, right_column)
+    fields_being_attacked << [row, left_column] unless Piece.out_of_bounds?(row, left_column)
+
+    @attacking_fields = fields_being_attacked
+  end
+
   private
 
   def set_move_set(color)
