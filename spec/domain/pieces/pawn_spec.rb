@@ -235,4 +235,16 @@ describe Pawn do
       end
     end
   end
+
+  describe '#update_attacking_fields' do
+    it 'update attacking fields with upper left and right edges' do
+      expected_attacking_fields = [[2, 1], [2, 3]]
+      position = Position.new(1, 2)
+      position.piece = Pawn.new('white')
+
+      position.piece.update_attacking_fields
+
+      expect(position.piece.attacking_fields).to match_array(expected_attacking_fields)
+    end
+  end
 end

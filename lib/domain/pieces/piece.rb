@@ -33,7 +33,6 @@ class Piece
     []
   end
 
-  # TODO: test
   def update_attacking_fields
     @attacking_fields = @possible_moves
   end

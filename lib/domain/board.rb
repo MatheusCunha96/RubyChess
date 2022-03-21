@@ -54,7 +54,6 @@ class Board
     end
   end
 
-  # TODO: test
   def update_positions_being_attacked
     @positions.each do |row|
       row.each do |position|

@@ -130,4 +130,114 @@ describe Board do
       expect(subject.position_state(0, 0)).to be('white')
     end
   end
+
+  describe '#move_piece' do
+    context 'when piece is a pawn' do
+      before do
+        pawn_orig = subject.positions[1][1]
+        pawn_dest = subject.positions[2][1]
+
+        subject.move_piece(pawn_orig, pawn_dest)
+      end
+
+      it 'move piece correctly' do
+        expect(subject.positions[1][1].piece).to be_nil
+        expect(subject.positions[2][1].piece).to be_instance_of(Pawn)
+      end
+
+      it 'set piece as moved' do
+        expect(subject.positions[2][1].piece.moved).to be_truthy
+      end
+    end
+
+    context 'when piece is a rook' do
+      before do
+        # move pawn to move rook, otherwise dont have space
+        pawn_orig = subject.positions[1][1]
+        pawn_dest = subject.positions[2][1]
+
+        subject.move_piece(pawn_orig, pawn_dest)
+
+        rook_orig = subject.positions[0][0]
+        rook_dest = subject.positions[1][0]
+
+        subject.move_piece(rook_orig, rook_dest)
+      end
+
+      it 'move piece correctly' do
+        expect(subject.positions[0][0].piece).to be_nil
+        expect(subject.positions[1][0].piece).to be_instance_of(Rook)
+      end
+
+      it 'set piece as moved' do
+        expect(subject.positions[1][0].piece.moved).to be_truthy
+      end
+    end
+
+    context 'when is another piece' do
+      before do
+        knight_orig = subject.positions[0][1]
+        knight_dest = subject.positions[2][2]
+
+        subject.move_piece(knight_orig, knight_dest)
+      end
+
+      it 'move piece correctly' do
+        expect(subject.positions[0][1].piece).to be_nil
+        expect(subject.positions[2][2].piece).to be_instance_of(Knight)
+      end
+    end
+  end
+
+  describe '#update_pieces_possible_moves' do
+    it 'call find_moves for every piece in board' do
+      subject.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          allow(current_piece).to receive(:find_moves)
+        end
+      end
+
+      subject.update_pieces_possible_moves
+
+      subject.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          expect(current_piece).to have_received(:find_moves).with(subject)
+        end
+      end
+    end
+  end
+
+  describe '#update_positions_being_attacked' do
+    it 'call update_attacking_fields for every piece in board' do
+      subject.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          allow(current_piece).to receive(:update_attacking_fields)
+        end
+      end
+
+      subject.update_positions_being_attacked
+
+      subject.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          expect(current_piece).to have_received(:update_attacking_fields)
+        end
+      end
+    end
+  end
 end

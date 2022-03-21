@@ -64,4 +64,16 @@ describe Piece do
       expect(piece.current_row).to eql(1)
     end
   end
+
+  describe '#update_attacking_fields' do
+    it 'update attacking fields with possible moves' do
+      piece = Piece.new('white', image)
+      possible_moves = [[2, 4], [3, 5], [2, 5]]
+      piece.possible_moves = possible_moves
+
+      piece.update_attacking_fields
+
+      expect(piece.attacking_fields).to match_array(possible_moves)
+    end
+  end
 end

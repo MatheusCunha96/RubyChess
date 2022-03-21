@@ -41,7 +41,6 @@ class Pawn < Piece
     moves
   end
 
-  # TODO: test
   def update_attacking_fields
     fields_being_attacked = []
 
