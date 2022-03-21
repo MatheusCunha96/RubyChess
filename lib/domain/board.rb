@@ -69,7 +69,11 @@ class Board
           row = field[0]
           column = field[1]
 
-          @positions[row][column].being_attacked = true
+          if piece.white?
+            @positions[row][column].being_attacked_by[:white] = true
+          else
+            @positions[row][column].being_attacked_by[:black] = true
+          end
         end
       end
     end

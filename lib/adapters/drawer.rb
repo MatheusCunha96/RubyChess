@@ -25,9 +25,9 @@ class Drawer
       print index.zero? ? "  #{display_number} " : ' '
       print '│  '
 
-      if position.piece.nil? && !position.being_attacked
+      if position.piece.nil? && !position.being_attacked?
         print '.'
-      elsif position.being_attacked
+      elsif position.being_attacked?
         print 'x'
       else
         print position.piece.image

@@ -216,7 +216,7 @@ describe Board do
   end
 
   describe '#update_positions_being_attacked' do
-    it 'call update_attacking_fields for every piece in board' do
+    before do
       subject.positions.each do |row|
         row.each do |position|
           current_piece = position.piece
@@ -228,7 +228,9 @@ describe Board do
       end
 
       subject.update_positions_being_attacked
+    end
 
+    it 'call update_attacking_fields for every piece in board' do
       subject.positions.each do |row|
         row.each do |position|
           current_piece = position.piece
@@ -236,6 +238,31 @@ describe Board do
           next if current_piece.nil?
 
           expect(current_piece).to have_received(:update_attacking_fields)
+        end
+      end
+    end
+
+    it 'update being_attacked_by field for white and black pieces separately' do
+      subject.positions.each do |row|
+        row.each do |position|
+          current_piece = position.piece
+
+          next if current_piece.nil?
+
+          expect(current_piece).to have_received(:update_attacking_fields)
+
+          attacking_fields = current_piece.attacking_fields
+
+          attacking_fields.each do |field|
+            row = field[0]
+            col = field[1]
+
+            if current_piece.white?
+              expect(subject.positions[row][col].being_attacked_by_white?).to be_truthy
+            else
+              expect(subject.positions[row][col].being_attacked_by_black?).to be_truthy
+            end
+          end
         end
       end
     end
