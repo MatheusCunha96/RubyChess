@@ -23,7 +23,9 @@ class Drawer
       print index.zero? ? "  #{display_number} " : ' '
       print '│  '
 
-      if position.piece.nil? && !position.being_attacked?
+      if !position.piece.nil?
+        print position.piece.image
+      elsif position.piece.nil? && !position.being_attacked?
         print '.'
       elsif position.being_attacked_by_white? && position.being_attacked_by_black?
         print 'w'
@@ -31,8 +33,6 @@ class Drawer
         print 'x'
       elsif position.being_attacked_by_black?
         print 'z'
-      else
-        print position.piece.image
       end
 
       print ' │' if index == 7
