@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 class Piece
-  attr_reader :initial_position, :image, :color
+  attr_reader :initial_position, :image, :color, :attacking_fields
   attr_accessor :current_position, :possible_moves
 
   # TODO: better remove image from piece, thats drawer responsability
   def initialize(color, image)
     @current_position = nil
     @possible_moves = []
+    @attacking_fields = []
     @color = color
     @image = image
   end
@@ -30,5 +31,9 @@ class Piece
 
   def find_moves(board)
     []
+  end
+
+  def update_attacking_fields
+    @attacking_fields = @possible_moves
   end
 end

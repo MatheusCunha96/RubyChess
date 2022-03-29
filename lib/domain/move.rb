@@ -15,18 +15,8 @@ class Move
       return false unless validate(player, orig_position, dest_position)
 
       board.move_piece(orig_position, dest_position)
-    end
-
-    def update_pieces_possible_moves(board)
-      board.positions.each do |row|
-        row.each do |position|
-          current_piece = position.piece
-
-          next if current_piece.nil?
-
-          current_piece.possible_moves = current_piece.find_moves(board)
-        end
-      end
+      board.update_pieces_possible_moves
+      board.update_positions_being_attacked
     end
 
     private

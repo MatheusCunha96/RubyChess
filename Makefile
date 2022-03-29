@@ -1,3 +1,6 @@
+install:
+	bundle install
+
 run:
 	ruby lib/game.rb
 

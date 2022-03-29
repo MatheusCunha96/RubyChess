@@ -90,30 +90,4 @@ describe Move do
       end
     end
   end
-
-  describe '.update_pieces_possible_moves' do
-    it 'call find_moves for every piece in board' do
-      board.positions.each do |row|
-        row.each do |position|
-          current_piece = position.piece
-
-          next if current_piece.nil?
-
-          allow(current_piece).to receive(:find_moves)
-        end
-      end
-
-      described_class.update_pieces_possible_moves(board)
-
-      board.positions.each do |row|
-        row.each do |position|
-          current_piece = position.piece
-
-          next if current_piece.nil?
-
-          expect(current_piece).to have_received(:find_moves).with(board)
-        end
-      end
-    end
-  end
 end

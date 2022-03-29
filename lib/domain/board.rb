@@ -17,6 +17,8 @@ class Board
     @positions = Array.new(8) { |row| Array.new(8) { |col| Position.new(row, col) } }
     @drawer = drawer
     set_initial_state
+    update_pieces_possible_moves
+    update_positions_being_attacked
   end
 
   def display
@@ -38,6 +40,43 @@ class Board
     piece.moved = true if piece.instance_of?(Pawn) || piece.instance_of?(Rook)
 
     true
+  end
+
+  def update_pieces_possible_moves
+    @positions.each do |row|
+      row.each do |position|
+        current_piece = position.piece
+
+        next if current_piece.nil?
+
+        current_piece.possible_moves = current_piece.find_moves(self)
+      end
+    end
+  end
+
+  def update_positions_being_attacked
+    @positions.each do |row|
+      row.each do |position|
+        piece = position.piece
+
+        next if piece.nil?
+
+        piece.update_attacking_fields
+
+        next if piece.attacking_fields.empty?
+
+        piece.attacking_fields.each do |field|
+          row = field[0]
+          column = field[1]
+
+          if piece.white?
+            @positions[row][column].being_attacked_by[:white] = true
+          else
+            @positions[row][column].being_attacked_by[:black] = true
+          end
+        end
+      end
+    end
   end
 
   private

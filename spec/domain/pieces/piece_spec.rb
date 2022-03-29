@@ -44,7 +44,7 @@ describe Piece do
 
     it 'return piece current column' do
       piece = Piece.new('white', image)
-      piece.current_position = [1,2]
+      piece.current_position = [1, 2]
 
       expect(piece.current_col).to eql(2)
     end
@@ -59,9 +59,21 @@ describe Piece do
 
     it 'return piece current column' do
       piece = Piece.new('white', image)
-      piece.current_position = [1,2]
+      piece.current_position = [1, 2]
 
       expect(piece.current_row).to eql(1)
+    end
+  end
+
+  describe '#update_attacking_fields' do
+    it 'update attacking fields with possible moves' do
+      piece = Piece.new('white', image)
+      possible_moves = [[2, 4], [3, 5], [2, 5]]
+      piece.possible_moves = possible_moves
+
+      piece.update_attacking_fields
+
+      expect(piece.attacking_fields).to match_array(possible_moves)
     end
   end
 end

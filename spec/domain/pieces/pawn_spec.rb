@@ -30,9 +30,9 @@ describe Pawn do
       end
     end
 
-    describe 'possible moves' do
+    describe 'move set' do
       context 'when white' do
-        it 'must have correct possibles move' do
+        it 'must have correct move set' do
           pawn = Pawn.new('white')
           expect(pawn.move_set).to eql({
               one_step:      [0, 1],
@@ -45,7 +45,7 @@ describe Pawn do
       end
 
       context 'when black' do
-        it 'must have correct possibles move' do
+        it 'must have correct move set' do
           pawn = Pawn.new('black')
           expect(pawn.move_set).to eql({
             one_step:      [0, -1],
@@ -233,6 +233,18 @@ describe Pawn do
           expect(expected_moves).to include(move)
         end
       end
+    end
+  end
+
+  describe '#update_attacking_fields' do
+    it 'update attacking fields with upper left and right edges' do
+      expected_attacking_fields = [[2, 1], [2, 3]]
+      position = Position.new(1, 2)
+      position.piece = Pawn.new('white')
+
+      position.piece.update_attacking_fields
+
+      expect(position.piece.attacking_fields).to match_array(expected_attacking_fields)
     end
   end
 end
