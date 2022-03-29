@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class Position
-  attr_accessor :row, :col, :piece, :being_attacked_by
+  attr_accessor :row, :col, :piece, :states
 
   def initialize(row, col)
     @row = row
     @col = col
     @piece = nil
-    @being_attacked_by = { white: false, black: false }
+    @states = { free: false,
+                occupied_by_white: false,
+                occupied_by_black: false,
+                attacked_by_white: false,
+                attacked_by_black: false }
   end
 
   def piece=(piece)
@@ -28,10 +32,10 @@ class Position
   end
 
   def being_attacked_by_white?
-    @being_attacked_by[:white]
+    @states[:attacked_by_white]
   end
 
   def being_attacked_by_black?
-    @being_attacked_by[:black]
+    @states[:attacked_by_black]
   end
 end
