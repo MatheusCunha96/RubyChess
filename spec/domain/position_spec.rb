@@ -95,4 +95,54 @@ describe Position do
       expect(position.being_attacked_by_black?).to be_falsey
     end
   end
+
+  describe '#free?' do
+    let(:position) { Position.new(1, 1) }
+
+    it 'return true if position without any piece' do
+      position.states[:free] = true
+
+      expect(position.free?).to be_truthy
+    end
+
+    it 'return false if position have any piece' do
+      position.states[:free] = false
+
+      expect(position.free?).to be_falsey
+    end
+  end
+
+  describe '#occupied_by?' do
+    describe 'white' do
+      let(:position) { Position.new(1, 1) }
+
+      it 'return true if position have a white piece' do
+        position.states[:occupied_by_white] = true
+
+        expect(position.occupied_by?('white')).to be_truthy
+      end
+
+      it 'return false if position dont have a white piece' do
+        position.states[:occupied_by_white] = false
+
+        expect(position.occupied_by?('white')).to be_falsey
+      end
+    end
+
+    describe 'black' do
+      let(:position) { Position.new(1, 1) }
+
+      it 'return true if position have a black piece' do
+        position.states[:occupied_by_black] = true
+
+        expect(position.occupied_by?('black')).to be_truthy
+      end
+
+      it 'return false if position dont have a black piece' do
+        position.states[:occupied_by_black] = false
+
+        expect(position.occupied_by?('black')).to be_falsey
+      end
+    end
+  end
 end

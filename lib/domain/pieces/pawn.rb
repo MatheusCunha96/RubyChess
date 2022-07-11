@@ -23,18 +23,18 @@ class Pawn < Piece
 
       next if Piece.out_of_bounds?(row, column)
 
-      position_state = board.position_state(row, column)
+      position = board.positions[row][column]
 
       case move
       when :one_step
-        moves << [row, column] if position_state.nil?
+        moves << [row, column] if position.free?
       when :capture_left, :capture_right
-        moves << [row, column] if position_state != @color && !position_state.nil?
+        moves << [row, column] if !position.occupied_by?(@color) && !position.free?
       when :double_step
         front_position_row = @color == 'white' ? (current_row + 1) : (current_row - 1)
-        front_position_state = board.position_state(front_position_row, current_col)
+        front_position = board.positions[front_position_row][current_col]
 
-        moves << [row, column] if position_state.nil? && front_position_state.nil? && !@moved
+        moves << [row, column] if position.free? && front_position.free? && !@moved
       end
     end
 

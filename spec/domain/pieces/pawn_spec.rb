@@ -59,6 +59,8 @@ describe Pawn do
         black_dest = Position.new(2, 4)
 
         board.send(:move_piece, black_orig, black_dest)
+        board.send(:update_positions_state)
+        board.send(:update_positions_being_attacked)
       end
 
       it 'success if next position empty' do
@@ -183,6 +185,9 @@ describe Pawn do
         board.send(:move_piece, first_black_orig, first_black_dest)
         board.send(:move_piece, second_black_orig, second_black_dest)
         board.send(:move_piece, white_orig, white_dest)
+
+        board.send(:update_positions_state)
+        board.send(:update_positions_being_attacked)
       end
 
       it 'success if front position empty and double front position empty' do

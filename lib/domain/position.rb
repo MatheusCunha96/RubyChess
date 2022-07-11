@@ -38,4 +38,14 @@ class Position
   def being_attacked_by_black?
     @states[:attacked_by_black]
   end
+
+  def free?
+    @states[:free]
+  end
+
+  def occupied_by?(color)
+    return states[:occupied_by_white] if color == 'white'
+
+    states[:occupied_by_black]
+  end
 end

@@ -17,19 +17,17 @@ class Board
     @positions = Array.new(8) { |row| Array.new(8) { |col| Position.new(row, col) } }
     @drawer = drawer
     set_initial_state
-    update_pieces_possible_moves
     update_positions_state
     update_positions_being_attacked
+    update_pieces_possible_moves
   end
 
   def display
     @drawer.display(@positions)
   end
 
-  def position_state(x, y)
-    return nil if @positions[x][y].piece.nil?
-
-    @positions[x][y].piece.color
+  def position_states(x, y)
+    @positions[x][y].states
   end
 
   def move_piece(orig, dest)

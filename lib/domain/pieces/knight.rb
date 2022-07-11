@@ -20,9 +20,9 @@ class Knight < Piece
 
       next if Piece.out_of_bounds?(row, column)
 
-      position_state = board.position_state(row, column)
+      position = board.positions[row][column]
 
-      moves << [row, column] if position_state.nil? || position_state != @color
+      moves << [row, column] if position.free? || !position.occupied_by?(@color)
     end
 
     moves

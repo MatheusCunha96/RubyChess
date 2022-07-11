@@ -17,11 +17,13 @@ class King < Piece
 
       next if Piece.out_of_bounds?(row, column)
 
-      position_state = board.position_state(row, column)
+      position = board.positions[row][column]
 
-      if position_state.nil?
+      if position.free?
         moves << [row, column]
-      elsif position_state != @color
+      elsif position.occupied_by?(@color)
+        next
+      else
         moves << [row, column]
       end
     end

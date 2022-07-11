@@ -117,17 +117,23 @@ describe Board do
     end
   end
 
-  describe '.position_state' do
-    it 'returns nil if empty space' do
-      expect(subject.position_state(4, 4)).to be(nil)
+  describe '.position_states' do
+    let(:expected_state) do
+      {
+        free: true,
+        attacked_by_black: false,
+        attacked_by_white: false,
+        occupied_by_black: false,
+        occupied_by_white: false
+      }
     end
 
-    it 'returns black if contains black piece' do
-      expect(subject.position_state(7, 0)).to be('black')
+    before do
+      allow_any_instance_of(Position).to receive(:states).and_return(expected_state)
     end
 
-    it 'returns white if contains white piece' do
-      expect(subject.position_state(0, 0)).to be('white')
+    it 'returns position state field' do
+      expect(subject.position_states(4, 4)).to be(expected_state)
     end
   end
 
