@@ -23,16 +23,10 @@ class Drawer
       print index.zero? ? "  #{display_number} " : ' '
       print '│  '
 
-      if !position.piece.nil?
-        print position.piece.image
-      elsif position.piece.nil? && !position.being_attacked?
+      if position.piece.nil?
         print '.'
-      elsif position.being_attacked_by_white? && position.being_attacked_by_black?
-        print ' '
-      elsif position.being_attacked_by_white?
-        print ' '
-      elsif position.being_attacked_by_black?
-        print ' '
+      else
+        print position.piece.image
       end
 
       print ' │' if index == 7
