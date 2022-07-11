@@ -215,6 +215,47 @@ describe Board do
     end
   end
 
+  describe '#update_positions_state' do
+    context 'when position dont have piece' do
+      let(:row) { 4 }
+      let(:column) { 4 }
+
+      it 'state must be free and not occupied by white or black' do
+        subject.update_positions_state
+
+        expect(subject.positions[row][column].states[:free]).to be_truthy
+        expect(subject.positions[row][column].states[:occupied_by_white]).to be_falsey
+        expect(subject.positions[row][column].states[:occupied_by_black]).to be_falsey
+      end
+    end
+
+    context 'when position have white piece' do
+      let(:row) { 0 }
+      let(:column) { 0 }
+
+      it 'state must be occupied by white and not by black, and not be free' do
+        subject.update_positions_state
+
+        expect(subject.positions[row][column].states[:free]).to be_falsey
+        expect(subject.positions[row][column].states[:occupied_by_white]).to be_truthy
+        expect(subject.positions[row][column].states[:occupied_by_black]).to be_falsey
+      end
+    end
+
+    context 'when position have black piece' do
+      let(:row) { 7 }
+      let(:column) { 7 }
+
+      it 'state must be occupied by black and not by white, and not be free' do
+        subject.update_positions_state
+
+        expect(subject.positions[row][column].states[:free]).to be_falsey
+        expect(subject.positions[row][column].states[:occupied_by_white]).to be_falsey
+        expect(subject.positions[row][column].states[:occupied_by_black]).to be_truthy
+      end
+    end
+  end
+
   describe '#update_positions_being_attacked' do
     before do
       subject.positions.each do |row|

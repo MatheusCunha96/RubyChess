@@ -28,11 +28,11 @@ class Drawer
       elsif position.piece.nil? && !position.being_attacked?
         print '.'
       elsif position.being_attacked_by_white? && position.being_attacked_by_black?
-        print 'w'
+        print ' '
       elsif position.being_attacked_by_white?
-        print 'x'
+        print ' '
       elsif position.being_attacked_by_black?
-        print 'z'
+        print ' '
       end
 
       print ' │' if index == 7
