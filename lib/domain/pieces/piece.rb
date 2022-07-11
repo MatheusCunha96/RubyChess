@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class Piece
-  attr_reader :initial_position, :image, :color, :attacking_fields
+  attr_reader :initial_position, :color, :attacking_fields
   attr_accessor :current_position, :possible_moves
 
-  # TODO: better remove image from piece, thats drawer responsability
-  def initialize(color, image)
+  def initialize(color)
     @current_position = nil
     @possible_moves = []
     @attacking_fields = []
     @color = color
-    @image = image
   end
 
   def self.out_of_bounds?(row, column)

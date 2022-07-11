@@ -22,18 +22,6 @@ describe Rook do
       expect(rook.color).to eql(color)
     end
 
-    describe 'image' do
-      it 'should be white if white rook' do
-        rook = Rook.new('white')
-        expect(rook.image).to eql('♜')
-      end
-
-      it 'should be black if black rook' do
-        rook = Rook.new('black')
-        expect(rook.image).to eql('♖')
-      end
-    end
-
     describe 'move_set' do
       it 'must have correct possibles move' do
         rook = Rook.new('white')

@@ -18,18 +18,6 @@ describe Knight do
       expect(knight.color).to eql(color)
     end
 
-    describe 'image' do
-      it 'should be white if white knight' do
-        knight = Knight.new('white')
-        expect(knight.image).to eql('♞')
-      end
-
-      it 'should be black if black knight' do
-        knight = Knight.new('black')
-        expect(knight.image).to eql('♘')
-      end
-    end
-
     describe 'possible moves' do
       it 'must have correct possibles move' do
         knight = Knight.new('white')

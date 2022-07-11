@@ -3,7 +3,7 @@
 require_relative 'piece'
 
 class Pawn < Piece
-  attr_accessor :image, :moved
+  attr_accessor :moved
   attr_reader :move_set
 
   def initialize(color)
@@ -11,7 +11,7 @@ class Pawn < Piece
     @move_set = set_move_set(color)
     @moved = false
 
-    super(color, color == 'white' ? '♟' : '♙')
+    super(color)
   end
 
   def find_moves(board)

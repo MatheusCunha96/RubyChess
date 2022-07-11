@@ -18,18 +18,6 @@ describe Pawn do
       expect(pawn.color).to eql(color)
     end
 
-    describe 'image' do
-      it 'should be white if white pawn' do
-        pawn = Pawn.new('white')
-        expect(pawn.image).to eql('♟')
-      end
-
-      it 'should be black if black pawn' do
-        pawn = Pawn.new('black')
-        expect(pawn.image).to eql('♙')
-      end
-    end
-
     describe 'move set' do
       context 'when white' do
         it 'must have correct move set' do

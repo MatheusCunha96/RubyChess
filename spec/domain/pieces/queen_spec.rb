@@ -22,18 +22,6 @@ describe Queen do
       expect(queen.color).to eql(color)
     end
 
-    describe 'image' do
-      it 'should be white if white queen' do
-        queen = Queen.new('white')
-        expect(queen.image).to eql('♛')
-      end
-
-      it 'should be black if black queen' do
-        queen = Queen.new('black')
-        expect(queen.image).to eql('♕')
-      end
-    end
-
     describe 'move_set' do
       it 'must have correct possibles move' do
         queen = Queen.new('white')

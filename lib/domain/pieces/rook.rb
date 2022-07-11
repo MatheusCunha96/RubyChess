@@ -3,14 +3,14 @@
 require_relative 'piece'
 
 class Rook < Piece
-  attr_accessor :image, :moved
+  attr_accessor :moved
   attr_reader :move_set
 
   def initialize(color)
     @move_set = set_move_set
     @moved = false
 
-    super(color, color == 'white' ? '♜' : '♖')
+    super(color)
   end
 
   def find_moves(board)

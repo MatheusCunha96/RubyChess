@@ -3,13 +3,12 @@
 require_relative 'piece'
 
 class Knight < Piece
-  attr_accessor :image
   attr_reader :move_set
 
   def initialize(color)
     @move_set = set_move_set
 
-    super(color, color == 'white' ? '♞' : '♘')
+    super(color)
   end
 
   def find_moves(board)

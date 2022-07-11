@@ -22,18 +22,6 @@ describe Bishop do
       expect(bishop.color).to eql(color)
     end
 
-    describe 'image' do
-      it 'should be white if white bishop' do
-        bishop = Bishop.new('white')
-        expect(bishop.image).to eql('♝')
-      end
-
-      it 'should be black if black bishop' do
-        bishop = Bishop.new('black')
-        expect(bishop.image).to eql('♗')
-      end
-    end
-
     describe 'move_set' do
       it 'must have correct possibles move' do
         bishop = Bishop.new('white')
