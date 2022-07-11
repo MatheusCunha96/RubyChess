@@ -18,6 +18,7 @@ class Board
     @drawer = drawer
     set_initial_state
     update_pieces_possible_moves
+    update_positions_state
     update_positions_being_attacked
   end
 
@@ -54,6 +55,31 @@ class Board
     end
   end
 
+  def update_positions_state
+    @positions.each do |row|
+      row.each do |position|
+        piece = position.piece
+
+        if piece.nil?
+          position.states[:free] = true
+          position.states[:occupied_by_white] = false
+          position.states[:occupied_by_black] = false
+        elsif piece.white?
+          position.states[:free] = false
+          position.states[:occupied_by_white] = true
+          position.states[:occupied_by_black] = false
+        else
+          position.states[:free] = false
+          position.states[:occupied_by_white] = false
+          position.states[:occupied_by_black] = true
+        end
+
+        position.states[:attacked_by_white] = false
+        position.states[:attacked_by_black] = false
+      end
+    end
+  end
+
   def update_positions_being_attacked
     @positions.each do |row|
       row.each do |position|
@@ -70,9 +96,9 @@ class Board
           column = field[1]
 
           if piece.white?
-            @positions[row][column].being_attacked_by[:white] = true
+            @positions[row][column].states[:attacked_by_white] = true
           else
-            @positions[row][column].being_attacked_by[:black] = true
+            @positions[row][column].states[:attacked_by_black] = true
           end
         end
       end

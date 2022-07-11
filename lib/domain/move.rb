@@ -16,6 +16,7 @@ class Move
 
       board.move_piece(orig_position, dest_position)
       board.update_pieces_possible_moves
+      board.update_positions_state
       board.update_positions_being_attacked
     end
 
