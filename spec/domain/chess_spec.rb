@@ -32,9 +32,11 @@ describe Chess do
       white_player_double = instance_double(Player)
       allow(white_player_double).to receive(:name).and_return('John')
       allow(white_player_double).to receive(:color).and_return('white')
+      allow(white_player_double).to receive(:opponent_color).and_return('black')
       black_player_double = instance_double(Player)
       allow(black_player_double).to receive(:name).and_return('Josh')
       allow(black_player_double).to receive(:color).and_return('black')
+      allow(black_player_double).to receive(:opponent_color).and_return('white')
 
       mock_input
       finish_game_after_move(2)

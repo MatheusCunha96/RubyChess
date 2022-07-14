@@ -39,4 +39,7 @@ describe King do
     end
   end
 
+  describe '#find_moves' do
+    context ''
+  end
 end

@@ -19,7 +19,7 @@ describe Move do
       let(:orig) { [1, 5] }
       let(:dest) { [2, 5] }
 
-      before { mock_piece_possible_moves(board.positions[1][5].piece, [[2, 5]]) }
+      before { board.positions[1][5].piece.find_moves(board) }
 
       it 'move piece from orig to dest' do
         described_class.execute(player, move, board)

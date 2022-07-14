@@ -41,7 +41,7 @@ describe Queen do
 
   describe '#find_moves' do
     it 'has no moves from initial position' do
-      queen= board.positions[0][3].piece
+      queen = board.positions[0][3].piece
       moves = queen.find_moves(board)
 
       expect(moves).to be_empty

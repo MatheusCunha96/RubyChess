@@ -8,8 +8,10 @@ class King < Piece
     super(color)
   end
 
+  # TODO: test
   def find_moves(board)
     moves = []
+    opponent_color = @color == 'white' ? 'black' : 'white'
 
     @move_set.each do |direction|
       column = current_col + direction[0]
@@ -19,13 +21,9 @@ class King < Piece
 
       position = board.positions[row][column]
 
-      if position.free?
-        moves << [row, column]
-      elsif position.occupied_by?(@color)
-        next
-      else
-        moves << [row, column]
-      end
+      next if position.occupied_by?(@color)
+
+      moves << [row, column]
     end
 
     moves

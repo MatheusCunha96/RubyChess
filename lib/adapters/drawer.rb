@@ -43,7 +43,11 @@ class Drawer
 
     colors[:background] = :black if (position.row + position.col).even?
 
-    colors[:color] = position.piece.white? ? :light_yellow : :light_blue if position.piece
+    if position.piece
+      opponent_color = position.piece.white? ? 'black' : 'white'
+      colors[:background] = :light_red if position.piece.class.name.downcase == 'king' && position.being_attacked_by?(opponent_color)
+      colors[:color] = position.piece.white? ? :light_yellow : :light_blue
+    end
 
     colors
   end

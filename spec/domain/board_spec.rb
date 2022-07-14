@@ -314,4 +314,42 @@ describe Board do
       end
     end
   end
+
+  describe '#check?' do
+    let(:player_black) { Player.new('John', 'black') }
+
+    before do
+      white_pawn_orig = subject.positions[1][2]
+      white_pawn_dest = subject.positions[2][2]
+
+      subject.move_piece(white_pawn_orig, white_pawn_dest)
+
+      black_pawn_orig = subject.positions[6][3]
+      black_pawn_dest = subject.positions[5][3]
+
+      subject.move_piece(black_pawn_orig, black_pawn_dest)
+    end
+
+    it 'false if player king not in check' do
+      subject.update_positions_state
+      subject.update_pieces_possible_moves
+      subject.update_positions_being_attacked
+
+      expect(subject.player_checked?(player_black)).to be_falsey
+    end
+
+    it 'true if player king in check' do
+      white_queen_orig = subject.positions[0][3]
+      white_queen_dest = subject.positions[3][0]
+
+      subject.move_piece(white_queen_orig, white_queen_dest)
+
+      subject.update_positions_state
+      subject.update_pieces_possible_moves
+      subject.update_positions_being_attacked
+
+      expect(subject.player_checked?(player_black)).to be_truthy
+    end
+
+  end
 end

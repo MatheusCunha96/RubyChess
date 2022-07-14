@@ -103,6 +103,33 @@ class Board
     end
   end
 
+  def clone
+    cloned_board = Board.new
+
+    cloned_board.positions = Marshal.load(Marshal.dump(positions))
+
+    cloned_board
+  end
+
+  def player_checked?(player)
+    king_position = nil
+
+    @positions.each do |row|
+      row.each do |position|
+        next if position.piece.nil?
+
+        if position.piece.instance_of?(King) && position.piece.color == player.color
+          king_position = position
+          break
+        end
+      end
+    end
+
+    return true if king_position.being_attacked_by?(player.opponent_color)
+
+    false
+  end
+
   private
 
   def set_initial_state

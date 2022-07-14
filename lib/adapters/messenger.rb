@@ -29,5 +29,9 @@ class Messenger
     def notify_opponent_piece
       puts 'That is not your piece, try again.'
     end
+
+    def notify_move_king_check
+      puts 'This move will leave your king in check!'
+    end
   end
 end

@@ -96,6 +96,40 @@ describe Position do
     end
   end
 
+  describe '#being_attacked_by?' do
+    describe 'white' do
+      let(:position) { Position.new(1, 1) }
+
+      it 'return true if position being attacked by a white piece' do
+        position.states[:attacked_by_white] = true
+
+        expect(position.being_attacked_by?('white')).to be_truthy
+      end
+
+      it 'return false if position not being attacked by a white piece' do
+        position.states[:attacked_by_white] = false
+
+        expect(position.being_attacked_by?('white')).to be_falsey
+      end
+    end
+
+    describe 'black' do
+      let(:position) { Position.new(1, 1) }
+
+      it 'return true if position being attacked by a black piece' do
+        position.states[:attacked_by_black] = true
+
+        expect(position.being_attacked_by?('black')).to be_truthy
+      end
+
+      it 'return false if position not being attacked by a black piece' do
+        position.states[:attacked_by_black] = false
+
+        expect(position.being_attacked_by?('black')).to be_falsey
+      end
+    end
+  end
+
   describe '#free?' do
     let(:position) { Position.new(1, 1) }
 

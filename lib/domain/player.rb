@@ -11,6 +11,12 @@ class Player
     @color = color
   end
 
+  def opponent_color
+    return 'black' if @color == 'white'
+
+    'white'
+  end
+
   def move
     move = Messenger.ask_player_move
 
